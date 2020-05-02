@@ -24,9 +24,13 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/bootstrap/dist/css/bootstrap.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/bootstrap/dist/js/bootstrap.js",
+              "./node_modules/jquery/dist/jquery.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -88,9 +92,13 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/bootstrap/dist/css/bootstrap.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/bootstrap/dist/js/bootstrap.js",
+              "./node_modules/jquery/dist/jquery.js"
+            ]
           }
         },
         "lint": {
@@ -119,6 +127,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "trBlogs"
+    }
+  },
+  "defaultProject": "trBlogs",
+  "cli": {
+    "analytics": "29767894-137e-4824-8ea2-aa348fa63c71"
+  }
 }
