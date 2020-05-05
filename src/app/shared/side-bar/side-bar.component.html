@@ -1,16 +1,17 @@
 <aside id="colorlib-aside" role="complementary" class="js-fullheight">
     <nav id="colorlib-main-menu" role="navigation">
         <ul>
-            <li class="colorlib-active"><a href="#">Trendy</a></li>
-            <li><a href="#">Post Trend</a></li>
-            <li><a href="#">Own Trend</a></li>
-            <li><a href="#">Profile</a></li>
-            <li><a href="#">Log In</a></li>
+            <li routerLinkActive="colorlib-active" routerLink="/trends"><a>trends</a></li>
+            <li *ngIf="isAuthenticated" routerLinkActive="colorlib-active"><a  routerLink="/trend-add">Post trend</a></li>
+            <li *ngIf="isAuthenticated" routerLinkActive="colorlib-active"><a href="#">Own trend</a></li>
+            <li *ngIf="isAuthenticated" routerLinkActive="colorlib-active"><a href="#">Profile</a></li>
+            <li *ngIf="!isAuthenticated"  routerLinkActive="colorlib-active"><a routerLink="/login">Log In</a></li>
+            <li *ngIf="isAuthenticated"  routerLinkActive="colorlib-active"><a routerLink="/login">Log out</a></li>
         </ul>
     </nav>
 
     <div class="colorlib-footer">
-        <h1 id="colorlib-logo" class="mb-4"><a href="#" style="background-image: url(assets/images/bg_1.jpg);">Naresh <span>Singh</span></a></h1>
+        <h1 id="colorlib-logo" class="mb-4"><a href="#" style="background-image: url(assets/images/bg_1.jpg);">{{ user ? user.firstName : 'Naresh' }} <span>{{ user ? user.lastName : 'Singh' }}</span></a></h1>
         <p class="pfooter">
 Copyright &copy;All rights reserved | Founder Naresh Singh kharolanaresh727@gmail.com
 </p>

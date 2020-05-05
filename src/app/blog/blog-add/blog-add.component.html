@@ -9,12 +9,19 @@
                 <form
                 [formGroup]="blogForm" (ngSubmit)="onSubmit()"
                 class="p-3 p-md-5 bg-light">
+                <div class="form-group">
+                  <input type="text"
+                  class="form-control"
+                  formControlName="title"
+                  placeholder="Title">
+                </div>
                     <div class="form-group">
                         <div class="custom-file">
                             <input type="file"
                             class="custom-file-input"
                             formControlName="image"
-                            id="image">
+                            id="image"
+                            (change)="onFileChange($event)">
                             <label class="custom-file-label" for="image">Upload Image</label>
                         </div>
                      </div>
@@ -30,7 +37,7 @@
                   </textarea>
                   </div>
                   <div class="form-group">
-                    <input type="submit" value="Post Trend" class="btn py-3 px-4 btn-primary">
+                    <input type="submit" [disabled]="!blogForm.valid" value="Post Trend" class="btn py-3 px-4 btn-primary">
                   </div>
                 </form>
               </div>

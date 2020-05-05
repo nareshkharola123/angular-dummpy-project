@@ -41,7 +41,6 @@ export class BlogService {
     }
 
     addBlog(blog: Blog){
-        console.info('blog added')
         this.blogs.push(blog);
     }
 

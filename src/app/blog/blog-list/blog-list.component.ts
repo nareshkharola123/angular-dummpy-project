@@ -22,7 +22,6 @@ export class BlogListComponent implements OnInit {
   ngOnInit(): void {
 
     this.blogs = this.blogService.getBlogList();
-    console.info(this.blogs)
   }
 
   onSelect(id: number){

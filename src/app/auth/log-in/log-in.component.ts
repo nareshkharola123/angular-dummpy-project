@@ -1,5 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-log-in',
@@ -10,8 +12,10 @@ export class LogInComponent implements OnInit, OnDestroy {
 
   logInForm: FormGroup;
   logInWith: string;
+  isError = false;
+  messageError: string;
 
-  constructor() { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     let email: string;
@@ -32,13 +36,30 @@ export class LogInComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(){
-    console.info('submit click')
-    console.log(this.logInForm.value);
-    
+    if(!this.logInForm.valid){
+      return;
+    }
+
+    this.authService.logIn(
+      this.logInForm.value.email,
+      this.logInForm.value.username,
+      this.logInForm.value.password
+      )
+      .subscribe(
+        resData => {
+          this.router.navigate(['/trends'])
+          this.logInForm.reset();
+        },
+        resErr => {
+          this.messageError = resErr.error.error.message;
+          this.isError = true;
+        }
+      )
+
   }
-  
+
   ngOnDestroy(){
-    
+
   }
 
 }

@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
-import { User } from '../user.model';
-import { CountriesName } from '../country-data';
+import { User } from '../../user/user.model';
+import { CountriesName, Country } from '../country-data';
+import { AuthService } from '../auth.service';
 
 
 @Component({
@@ -15,19 +17,20 @@ export class SignUpComponent implements OnInit {
   signUpForm: FormGroup;
   user: User;
   valueTab: number = 0;
-  countryList: {}[] = new CountriesName().getCountryList(); 
+  countryList: Country[] = new CountriesName().getCountryList();
+  isLoading = false;
+  isError = false;
+  messageError: string;
 
-
-  constructor() { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.initForm();
-    
+
   }
 
   private initForm(){
-    console.log('initForm');
-  
+
     let firstName: string;
     let lastName: string;
     let userName: string;
@@ -49,23 +52,37 @@ export class SignUpComponent implements OnInit {
       'gender': new FormControl(gender, Validators.required),
       'country': new FormControl(country, Validators.required),
       'dateOfBirth': new FormControl(dateOfBirth, Validators.required),
-      'password': new FormControl(password, [Validators.required, Validators.minLength(6)]) 
+      'password': new FormControl(password, [Validators.required, Validators.minLength(6)])
 
     })
   }
 
   onSubmit(){
-    console.log('I am submit');
-    console.log(this.signUpForm.value)
+
+    if(!this.signUpForm.valid){
+      return;
+    }
+
+    this.authService.signUp(this.signUpForm.value)
+    .subscribe(
+      (resData) => {
+        this.router.navigate(['/trends']);
+        this.signUpForm.reset();
+      },
+      (errData) => {
+        this.isError = true;
+        this.messageError = errData.error.error.message;
+      }
+    )
+
+
   }
 
   onNext(){
-    console.info('on Next click')
     this.valueTab += 1
   }
 
   onPrev(){
-    console.info('onPrev click')
     this.valueTab -= 1
   }
 
