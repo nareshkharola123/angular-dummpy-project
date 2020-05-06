@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
@@ -36,9 +36,12 @@ export class LogInComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(){
+
     if(!this.logInForm.valid){
       return;
     }
+
+    this.authService.loading.next(true);
 
     this.authService.logIn(
       this.logInForm.value.email,
@@ -47,12 +50,15 @@ export class LogInComponent implements OnInit, OnDestroy {
       )
       .subscribe(
         resData => {
+          this.authService.loading.next(false);
           this.router.navigate(['/trends'])
           this.logInForm.reset();
+
         },
         resErr => {
           this.messageError = resErr.error.error.message;
           this.isError = true;
+          this.authService.loading.next(false);
         }
       )
 

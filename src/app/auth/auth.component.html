@@ -1,4 +1,5 @@
 <div id="colorlib-main">
+
     <section class="ftco-section contact-section px-md-4">
       <div class="container">
         <div class="row d-flex mb-5 contact-info">
@@ -35,7 +36,7 @@
              </div>
              <div class="col-lg-6 d-flex">
                  <app-log-in></app-log-in>
-            </div>>
+            </div>
 
             <!-- Child Component Sign-up and Log-in End here -->
 
@@ -43,3 +44,8 @@
     </div>
   </section>
 </div>
+
+<ng-template #customLoadingTemplate>
+</ng-template>
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate"></ngx-loading>
+

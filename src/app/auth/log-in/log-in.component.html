@@ -1,3 +1,4 @@
+
     <form class="bg-light p-5 contact-form"  [formGroup]="logInForm" (ngSubmit)="onSubmit()">
       <h3 class="mb-5 font-weight-bold">Log In</h3>
       <h5 class="mb-7 font-weight-bold">With:</h5>
@@ -38,6 +39,21 @@
       </div>
 
       <div class="form-group">
-        <input type="submit" value="Submit" class="btn btn-primary py-2 px-4">
+        <input type="submit" value="Submit" [disabled]='!logInForm.valid' class="btn btn-primary py-2 px-4">
       </div>
     </form>
+
+
+
+      <!-- <ng-template #customLoadingTemplate>
+           <div class="custom-class">
+              <h3>
+                  Loading...
+              </h3>
+              <button (click)="showAlert()">
+                  Click me!
+              </button>
+          </div> -->
+      <!-- </ng-template>  -->
+
+

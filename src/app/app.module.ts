@@ -17,6 +17,7 @@ import { ENDPOINTS_CONFIG, EndpointsConfig } from './configs/endpoints.config';
   imports: [
     BrowserModule,
     HttpClientModule,
+    // custom module
     AppRoutingModule,
     SharedModule,
     AuthModule,

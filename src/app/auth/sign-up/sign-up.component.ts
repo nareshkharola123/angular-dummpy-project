@@ -63,14 +63,18 @@ export class SignUpComponent implements OnInit {
       return;
     }
 
+    this.authService.loading.next(true);
+
     this.authService.signUp(this.signUpForm.value)
     .subscribe(
       (resData) => {
+        this.authService.loading.next(false);
         this.router.navigate(['/trends']);
         this.signUpForm.reset();
       },
       (errData) => {
         this.isError = true;
+        this.authService.loading.next(false);
         this.messageError = errData.error.error.message;
       }
     )

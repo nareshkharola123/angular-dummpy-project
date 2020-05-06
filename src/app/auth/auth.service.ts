@@ -22,6 +22,7 @@ export interface AuthResponseData {
 export class AuthService{
 
   user = new BehaviorSubject<User>(null);
+  loading = new BehaviorSubject<boolean>(false);
 
   constructor(
     private http: HttpClient,
@@ -52,6 +53,7 @@ export class AuthService{
   }
 
   logIn(email: string, userName: string, password: string){
+
     return this.http.post<AuthResponseData>(
       this.auth_end_api.logIn,
       {
