@@ -8,6 +8,7 @@ import { AuthModule } from './auth/auth.module';
 import { BlogModule } from './blog/blog.module';
 import { SharedModule } from './shared/shared.module';
 import { UserModule } from './user/user.module';
+import { ENDPOINTS_CONFIG, EndpointsConfig } from './configs/endpoints.config';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,9 @@ import { UserModule } from './user/user.module';
     BlogModule,
     UserModule
   ],
-  providers: [],
+  providers: [
+    {provide: ENDPOINTS_CONFIG, useValue: EndpointsConfig}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

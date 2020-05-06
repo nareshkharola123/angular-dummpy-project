@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
 import { throwError, BehaviorSubject} from 'rxjs';
-import { Injectable } from '@angular/core';
-import { environment } from '../../environments/environment';
+import { Injectable, Inject } from '@angular/core';
 
 import { User } from '../user/user.model';
 import { UserService } from '../user/user.service';
+import { ENDPOINTS_CONFIG } from '../configs/endpoints.config';
 
 
 export interface AuthResponseData {
@@ -25,14 +25,15 @@ export class AuthService{
 
   constructor(
     private http: HttpClient,
-    private userService: UserService){}
+    private userService: UserService,
+    @Inject(ENDPOINTS_CONFIG) private auth_end_api: any){}
 
   signUp(data: User){
    const email = data.email;
    const password = data.password;
 
      return this.http.post<AuthResponseData>(
-      'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=' + environment.firebase.apiKey,
+      this.auth_end_api.signUp,
       {
         email: email,
         password: password,
@@ -52,7 +53,7 @@ export class AuthService{
 
   logIn(email: string, userName: string, password: string){
     return this.http.post<AuthResponseData>(
-      'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=' + environment.firebase.apiKey,
+      this.auth_end_api.logIn,
       {
         email: email,
         password: password,
