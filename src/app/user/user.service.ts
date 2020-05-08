@@ -34,7 +34,7 @@ export class UserService {
       lastName = userData.lastName;
       userName = userData.userName;
       dateOfBirth = new Date(userData.dateOfBirth);
-      country = userData.userName;
+      country = userData.country;
       mobile = userData.mobile;
       gender = userData.gender;
     }

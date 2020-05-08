@@ -3,10 +3,18 @@
         <ul>
             <li routerLinkActive="colorlib-active" routerLink="/trends"><a>trends</a></li>
             <li *ngIf="isAuthenticated" routerLinkActive="colorlib-active"><a  routerLink="/trend-add">Post trend</a></li>
-            <li *ngIf="isAuthenticated" routerLinkActive="colorlib-active"><a href="#">Own trend</a></li>
-            <li *ngIf="isAuthenticated" routerLinkActive="colorlib-active"><a href="#">Profile</a></li>
+
+            <div class="btn-group dropright" sideBarDropdown>
+              <li  routerLinkActive="colorlib-active"><a href="javascript:void(0)">User</a></li>
+              <div class="dropdown-menu">
+                <!-- Dropdown menu links -->
+                <li *ngIf="isAuthenticated" routerLinkActive="colorlib-active"><a href="#">Own trend</a></li>
+                <li routerLinkActive="colorlib-active"><a  routerLink="/user">Profile</a></li>
+                <li *ngIf="isAuthenticated" routerLinkActive="colorlib-active"><a routerLink="/user-edit">Edit Profile</a></li>
+              </div>
+            </div>
             <li *ngIf="!isAuthenticated"  routerLinkActive="colorlib-active"><a routerLink="/login">Log In</a></li>
-            <li *ngIf="isAuthenticated"  routerLinkActive="colorlib-active"><a routerLink="/login">Log out</a></li>
+            <li *ngIf="isAuthenticated"  routerLinkActive="colorlib-active" (click)="onLogOut()" ><a routerLink="/login">Log out</a></li>
         </ul>
     </nav>
 

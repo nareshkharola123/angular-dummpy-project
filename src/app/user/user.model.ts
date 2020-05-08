@@ -13,8 +13,8 @@ export class User {
         public gender: string,
         //others field
         public id: string,
-        private _token: string,
-        private _tokenExpirationDate: Date,
+        public _token: string,
+        public _tokenExpirationDate: Date,
         public password?: string,
         ){}
 

@@ -4,13 +4,15 @@ import { SharedModule } from '../shared/shared.module';
 
 import { UserDetailComponent } from './user-detail/user-detail.component';
 import { UserEditComponent } from './user-edit/user-edit.component';
+import { UserRoutingModule } from './user-routing.module';
 
 
 @NgModule({
   declarations: [UserDetailComponent, UserEditComponent],
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
+    UserRoutingModule
   ]
 })
 export class UserModule { }
