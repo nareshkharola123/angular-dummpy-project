@@ -94,18 +94,12 @@ export class AuthService{
       return;
     }
 
-    const loadedUserData = new User(
-      userData.firstName,
-      userData.lastName,
-      userData.userName,
+    const loadedUserData = this.userService.createUser(
       userData.email,
-      userData.dateOfBirth,
-      userData.country,
-      userData.mobile,
-      userData.gender,
       userData.id,
       userData._token,
-      userData._tokenExpirationDate
+      userData._tokenExpirationDate,
+      userData
     );
 
     if(loadedUserData.token){

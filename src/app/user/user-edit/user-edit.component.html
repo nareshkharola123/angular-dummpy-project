@@ -1,1 +1,115 @@
-<h1>fuck you      ........................................</h1>
+<!-- <form class="bg-light p-5 contact-form"  [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+  <h3 class="mb-5 font-weight-bold">Sign Up</h3>
+  <div *ngIf="isError" class="alert alert-danger" role="alert">
+    {{ messageError }}
+  </div>
+  <ng-container *ngIf="valueTab == 0">
+  <div class="form-group">
+    <input type="text"
+    class="form-control"
+    formControlName="firstName"
+    placeholder="First Name">
+    <p class="text-error"
+    *ngIf="signUpForm.controls.firstName.invalid && (signUpForm.controls.firstName.dirty || signUpForm.controls.firstName.touched)"
+    style="color: red; font-size: 1.5vh;">First Name Required Field!</p>
+  </div>
+
+  <div class="form-group">
+    <input type="text"
+    class="form-control"
+    formControlName="lastName"
+    placeholder="Last Name">
+  </div>
+  <div class="form-group">
+    <input type="text"
+    class="form-control"
+    formControlName="userName"
+    placeholder="Username">
+    <p class="text-error"
+    *ngIf="signUpForm.controls.userName.invalid && (signUpForm.controls.userName.dirty || signUpForm.controls.userName.touched)"
+    style="color: red; font-size: 1.5vh;">User Name Required Field!</p>
+  </div>
+  <div class="form-group">
+    <input type="email"
+    class="form-control"
+    formControlName="email"
+    placeholder="Email"
+    >
+    <p class="text-error"
+    *ngIf="signUpForm.controls.email.invalid && (signUpForm.controls.email.dirty || signUpForm.controls.email.touched)"
+    style="color: red; font-size: 1.5vh;">Email Required Field!</p>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="valueTab == 1">
+  <div class="form-group">
+    <input type="tel"
+    class="form-control"
+    formControlName="mobile"
+    placeholder="Mobile">
+    <p class="text-error"
+    *ngIf="signUpForm.controls.mobile.invalid && (signUpForm.controls.mobile.dirty || signUpForm.controls.mobile.touched)"
+    style="color: red; font-size: 1.5vh;">Mobile Required Field!</p>
+  </div>
+  <div class="form-check form-check-inline">
+    <input class="form-check-input"
+    type="radio"
+    id="inlineRadio1"
+    formControlName="gender"
+    value="male">
+    <label class="form-check-label" for="inlineRadio1">Male</label>
+  </div>
+  <div class="form-check form-check-inline">
+    <input class="form-check-input"
+    type="radio"
+    id="inlineRadio2"
+    formControlName="gender"
+    value="female">
+    <label class="form-check-label" for="inlineRadio2">Female</label>
+  </div>
+  <div class="form-group">
+    <label for="country">Country:</label>
+    <select id="country" class="form-control" formControlName="country">
+      <option *ngFor="let country of countryList" value="{{ country.code }}">{{ country.name }}</option>
+    </select>
+    <p class="text-error"
+    *ngIf="signUpForm.controls.country.invalid && (signUpForm.controls.country.dirty || signUpForm.controls.country.touched)"
+    style="color: red; font-size: 1.5vh;">Country Required Field!</p>
+  </div>
+  <div class="form-group">
+    <label for="birthday">DOB:</label>
+    <input type="date"
+    class="form-control"
+    formControlName="dateOfBirth"
+    placeholder="Date oF Birth">
+    <p class="text-error"
+    *ngIf="signUpForm.controls.dateOfBirth.invalid && (signUpForm.controls.dateOfBirth.dirty || signUpForm.controls.dateOfBirth.touched)"
+    style="color: red; font-size: 1.5vh;">Date Of Birth Required Field!</p>
+  </div>
+  <div class="form-group">
+    <input type="password"
+    class="form-control"
+    formControlName="password"
+    placeholder="Password">
+    <p class="text-error"
+    *ngIf="signUpForm.controls.password.invalid && (signUpForm.controls.password.dirty || signUpForm.controls.password.touched)"
+    style="color: red; font-size: 1.5vh;">Password Required Field!</p>
+  </div>
+  <div class="form-group">
+    <input type="submit" value="Submit" class="btn btn-primary py-2 px-4">
+  </div>
+</ng-container>
+  <div class="form-group">
+    <span>
+      <button type="button"
+      class="btn btn-primary"
+      [disabled]="!signUpForm.controls.firstName.valid || !signUpForm.controls.userName.valid ||
+      !signUpForm.controls.email.valid"
+      (click)="onNext()"
+      *ngIf="valueTab == 0">Save & Next</button>
+    </span>
+    <span>
+      <button type="button" class="btn btn-primary" (click)='onPrev()' *ngIf="valueTab == 1">Prev</button>
+    </span>
+  </div>
+</form> -->

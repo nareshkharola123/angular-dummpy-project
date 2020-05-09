@@ -7,12 +7,13 @@ import { userData } from './dummy-data.user';
 @Injectable({ providedIn: 'root' })
 export class UserService {
 
-  userData = userData;
+  private userData = userData;
+  private user: User;
 
 
   constructor(){}
 
-  createUser(email: string, userId: string, token: string, expirationDate: Date, userFormData?: User){
+  createUser(email: string, userId: string, token: string, expirationDate: Date, userObjectData?: User){
     let firstName: string;
     let lastName: string;
     let userName: string;
@@ -21,14 +22,14 @@ export class UserService {
     let mobile: number;
     let gender: string;
 
-    if(userFormData){
-      firstName = userFormData.firstName;
-      lastName = userFormData.lastName;
-      userName = userFormData.userName;
-      dateOfBirth = userFormData.dateOfBirth;
-      country = userFormData.country;
-      mobile = userFormData.mobile;
-      gender = userFormData.gender;
+    if(userObjectData){
+      firstName = userObjectData.firstName;
+      lastName = userObjectData.lastName;
+      userName = userObjectData.userName;
+      dateOfBirth = userObjectData.dateOfBirth;
+      country = userObjectData.country;
+      mobile = userObjectData.mobile;
+      gender = userObjectData.gender;
     }else{
       firstName = userData.firstName;
       lastName = userData.lastName;
@@ -52,7 +53,12 @@ export class UserService {
       token,
       expirationDate
     );
+    this.user = user
       return user
+  }
+
+  getUser(){
+    return this.user
   }
 
 }
