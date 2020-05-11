@@ -3,8 +3,8 @@ export const userData = {
   country: 'india',
   mobile: 9815098150,
   gender: 'male',
-  firstName: 'Anand',
-  lastName: 'Singh',
-  userName: 'AandSingh'
+  firstName: 'John',
+  lastName: 'Doe',
+  userName: '@John123'
 }
 

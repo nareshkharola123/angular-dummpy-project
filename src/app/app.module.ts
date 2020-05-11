@@ -15,7 +15,7 @@ import { ENDPOINTS_CONFIG, EndpointsConfig } from './configs/endpoints.config';
     AppComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     HttpClientModule,
     // custom module
     AppRoutingModule,

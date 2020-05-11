@@ -5,13 +5,15 @@ import { SideBarComponent } from './side-bar/side-bar.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { SharedRoutingModule } from './shared-routing.module';
 import { SideBarDropdownDirective } from './side-bar-dropdown.directive';
+import { GetAge } from './get-age.pipe';
 
 
 @NgModule({
   declarations: [
     SideBarComponent,
     PageNotFoundComponent,
-    SideBarDropdownDirective
+    SideBarDropdownDirective,
+    GetAge,
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,8 @@ import { SideBarDropdownDirective } from './side-bar-dropdown.directive';
   exports: [
     SideBarComponent,
     PageNotFoundComponent,
-    SideBarDropdownDirective
+    SideBarDropdownDirective,
+    GetAge
   ]
 })
 export class SharedModule { }

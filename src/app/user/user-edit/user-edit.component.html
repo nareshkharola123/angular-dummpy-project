@@ -1,16 +1,47 @@
-<!-- <form class="bg-light p-5 contact-form"  [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
-  <h3 class="mb-5 font-weight-bold">Sign Up</h3>
+<div id="colorlib-main">
+
+  <section class="ftco-section contact-section px-md-4">
+    <div class="container">
+      <div class="row d-flex mb-5 contact-info">
+        <div class="col-md-12 mb-4">
+          <h2 class="h3">Contact Information</h2>
+        </div>
+        <div class="w-100"></div>
+        <div class="col-lg-6 col-xl-3 d-flex mb-4">
+          <div class="info bg-light p-4">
+            <p><span>Address:</span> 198 West 21th Street, Suite 721 New York NY 10016</p>
+          </div>
+        </div>
+        <div class="col-lg-6 col-xl-3 d-flex mb-4">
+          <div class="info bg-light p-4">
+            <p><span>Phone:</span> <a href="tel://1234567920">+ 1235 2355 98</a></p>
+          </div>
+        </div>
+        <div class="col-lg-6 col-xl-3 d-flex mb-4">
+          <div class="info bg-light p-4">
+            <p><span>Email:</span> <a href="mailto:info@yoursite.com">info@yoursite.com</a></p>
+          </div>
+        </div>
+        <div class="col-lg-6 col-xl-3 d-flex mb-4">
+          <div class="info bg-light p-4">
+            <p><span>Website</span> <a href="#">yoursite.com</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="row block-9">
+
+<form class="bg-light p-5 contact-form"  [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <h3 class="mb-5 font-weight-bold">Edit Profile</h3>
   <div *ngIf="isError" class="alert alert-danger" role="alert">
     {{ messageError }}
   </div>
-  <ng-container *ngIf="valueTab == 0">
   <div class="form-group">
     <input type="text"
     class="form-control"
     formControlName="firstName"
     placeholder="First Name">
     <p class="text-error"
-    *ngIf="signUpForm.controls.firstName.invalid && (signUpForm.controls.firstName.dirty || signUpForm.controls.firstName.touched)"
+    *ngIf="userForm.controls.firstName.invalid && (userForm.controls.firstName.dirty || userForm.controls.firstName.touched)"
     style="color: red; font-size: 1.5vh;">First Name Required Field!</p>
   </div>
 
@@ -26,7 +57,7 @@
     formControlName="userName"
     placeholder="Username">
     <p class="text-error"
-    *ngIf="signUpForm.controls.userName.invalid && (signUpForm.controls.userName.dirty || signUpForm.controls.userName.touched)"
+    *ngIf="userForm.controls.userName.invalid && (userForm.controls.userName.dirty || userForm.controls.userName.touched)"
     style="color: red; font-size: 1.5vh;">User Name Required Field!</p>
   </div>
   <div class="form-group">
@@ -36,19 +67,17 @@
     placeholder="Email"
     >
     <p class="text-error"
-    *ngIf="signUpForm.controls.email.invalid && (signUpForm.controls.email.dirty || signUpForm.controls.email.touched)"
+    *ngIf="userForm.controls.email.invalid && (userForm.controls.email.dirty || userForm.controls.email.touched)"
     style="color: red; font-size: 1.5vh;">Email Required Field!</p>
   </div>
-</ng-container>
 
-<ng-container *ngIf="valueTab == 1">
   <div class="form-group">
     <input type="tel"
     class="form-control"
     formControlName="mobile"
     placeholder="Mobile">
     <p class="text-error"
-    *ngIf="signUpForm.controls.mobile.invalid && (signUpForm.controls.mobile.dirty || signUpForm.controls.mobile.touched)"
+    *ngIf="userForm.controls.mobile.invalid && (userForm.controls.mobile.dirty || userForm.controls.mobile.touched)"
     style="color: red; font-size: 1.5vh;">Mobile Required Field!</p>
   </div>
   <div class="form-check form-check-inline">
@@ -67,13 +96,13 @@
     value="female">
     <label class="form-check-label" for="inlineRadio2">Female</label>
   </div>
-  <div class="form-group">
+  <div class="">
     <label for="country">Country:</label>
     <select id="country" class="form-control" formControlName="country">
-      <option *ngFor="let country of countryList" value="{{ country.code }}">{{ country.name }}</option>
+      <option *ngFor="let country of countryList" value={{country.code}}>{{ country.name }}</option>
     </select>
     <p class="text-error"
-    *ngIf="signUpForm.controls.country.invalid && (signUpForm.controls.country.dirty || signUpForm.controls.country.touched)"
+    *ngIf="userForm.controls.country.invalid && (userForm.controls.country.dirty || userForm.controls.country.touched)"
     style="color: red; font-size: 1.5vh;">Country Required Field!</p>
   </div>
   <div class="form-group">
@@ -83,33 +112,15 @@
     formControlName="dateOfBirth"
     placeholder="Date oF Birth">
     <p class="text-error"
-    *ngIf="signUpForm.controls.dateOfBirth.invalid && (signUpForm.controls.dateOfBirth.dirty || signUpForm.controls.dateOfBirth.touched)"
+    *ngIf="userForm.controls.dateOfBirth.invalid && (userForm.controls.dateOfBirth.dirty || userForm.controls.dateOfBirth.touched)"
     style="color: red; font-size: 1.5vh;">Date Of Birth Required Field!</p>
-  </div>
-  <div class="form-group">
-    <input type="password"
-    class="form-control"
-    formControlName="password"
-    placeholder="Password">
-    <p class="text-error"
-    *ngIf="signUpForm.controls.password.invalid && (signUpForm.controls.password.dirty || signUpForm.controls.password.touched)"
-    style="color: red; font-size: 1.5vh;">Password Required Field!</p>
   </div>
   <div class="form-group">
     <input type="submit" value="Submit" class="btn btn-primary py-2 px-4">
   </div>
-</ng-container>
-  <div class="form-group">
-    <span>
-      <button type="button"
-      class="btn btn-primary"
-      [disabled]="!signUpForm.controls.firstName.valid || !signUpForm.controls.userName.valid ||
-      !signUpForm.controls.email.valid"
-      (click)="onNext()"
-      *ngIf="valueTab == 0">Save & Next</button>
-    </span>
-    <span>
-      <button type="button" class="btn btn-primary" (click)='onPrev()' *ngIf="valueTab == 1">Prev</button>
-    </span>
-  </div>
-</form> -->
+</form>
+
+</div>
+</div>
+</section>
+</div>

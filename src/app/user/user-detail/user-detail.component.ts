@@ -15,4 +15,6 @@ export class UserDetailComponent implements OnInit {
 
   get user(){ return this.userService.getUser(); }
 
+
+
 }
