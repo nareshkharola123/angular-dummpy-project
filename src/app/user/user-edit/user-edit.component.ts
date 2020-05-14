@@ -4,6 +4,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CountriesName, Country } from 'src/app/auth/country-data';
 import { UserService } from '../user.service';
 import { User } from '../user.model';
+import { Observable, BehaviorSubject, of } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-user-edit',
@@ -17,7 +19,6 @@ export class UserEditComponent implements OnInit {
   isError = false;
   messageError: string;
   countryList: Country[] = new CountriesName().getCountryList();
-
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
@@ -34,7 +35,7 @@ export class UserEditComponent implements OnInit {
 
     let mobile: number = user.mobile;
     let gender: string = user.gender;
-    let country = {"name": "Algeria", "code": "DZ"};
+    let country: []
     let dateOfBirth: Date = user.dateOfBirth;
 
     this.userForm = new FormGroup({

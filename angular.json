@@ -25,11 +25,14 @@
             ],
             "styles": [
               "./node_modules/bootstrap/dist/css/bootstrap.css",
+              "./node_modules/country-select-js/build/css/countrySelect.css",
               "src/styles.css"
             ],
             "scripts": [
               "./node_modules/bootstrap/dist/js/bootstrap.js",
-              "./node_modules/jquery/dist/jquery.js"
+              "./node_modules/jquery/dist/jquery.js",
+              "./node_modules/jquery/dist/jquery.js",
+              "./node_modules/country-select-js/build/js/countrySelect.js"
             ]
           },
           "configurations": {
@@ -93,11 +96,14 @@
             ],
             "styles": [
               "./node_modules/bootstrap/dist/css/bootstrap.css",
+              "./node_modules/country-select-js/build/css/countrySelect.css",
               "src/styles.css"
             ],
             "scripts": [
               "./node_modules/bootstrap/dist/js/bootstrap.js",
-              "./node_modules/jquery/dist/jquery.js"
+              "./node_modules/jquery/dist/jquery.js",
+              "./node_modules/jquery/dist/jquery.js",
+              "./node_modules/country-select-js/build/js/countrySelect.js"
             ]
           }
         },
