@@ -23,7 +23,7 @@ import { GetAge } from './get-age.pipe';
     SideBarComponent,
     PageNotFoundComponent,
     SideBarDropdownDirective,
-    GetAge
+    GetAge,
   ]
 })
 export class SharedModule { }

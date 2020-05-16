@@ -1,6 +1,6 @@
 export const userData = {
-  dateOfBirth: '05-08-1993',
-  country: 'india',
+  dateOfBirth: new Date(1989, 8, 10),
+  country: 'IN',
   mobile: 9815098150,
   gender: 'male',
   firstName: 'John',

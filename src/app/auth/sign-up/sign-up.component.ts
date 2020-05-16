@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 
 import { User } from '../../user/user.model';
 import { CountriesName, Country } from '../country-data';
@@ -13,6 +14,9 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./sign-up.component.css']
 })
 export class SignUpComponent implements OnInit {
+
+  colorTheme = 'theme-dark-blue';  // datePicker theme
+  bsConfig: Partial<BsDatepickerConfig>;
 
   signUpForm: FormGroup;
   user: User;
@@ -30,6 +34,16 @@ export class SignUpComponent implements OnInit {
   }
 
   private initForm(){
+
+    this.bsConfig = Object.assign(
+      {},
+      {
+        containerClass: this.colorTheme,
+        isAnimated: true,
+        adaptivePosition: true,
+        maxDate: new Date(2001, 12, 31),
+      }
+      );
 
     let firstName: string;
     let lastName: string;
@@ -63,6 +77,9 @@ export class SignUpComponent implements OnInit {
       return;
     }
 
+    console.log(this.signUpForm.value);
+
+
     this.authService.loading.next(true);
 
     this.authService.signUp(this.signUpForm.value)
@@ -78,7 +95,6 @@ export class SignUpComponent implements OnInit {
         this.messageError = errData.error.error.message;
       }
     )
-
 
   }
 

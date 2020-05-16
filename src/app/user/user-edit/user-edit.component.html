@@ -97,19 +97,22 @@
     <label class="form-check-label" for="inlineRadio2">Female</label>
   </div>
   <div class="form-group">
-    <!-- <label for="country">Country:</label>
+    <label for="country">Country:</label>
     <select id="country" class="form-control"  formControlName="country">
-      <option *ngFor="let country of countryList" [value]="country.code" [selected]="country.code === 'ZW' ? true : false" >{{ country.name }}</option>
-    </select> -->
+      <option *ngFor="let country of countryList" [value]="country.code"  >{{ country.name }}</option>
+    </select>
 
     <p class="text-error"
     *ngIf="userForm.controls.country.invalid && (userForm.controls.country.dirty || userForm.controls.country.touched)"
     style="color: red; font-size: 1.5vh;">Country Required Field!</p>
   </div>
   <div class="form-group">
+
     <label for="birthday">DOB:</label>
-    <input type="date"
+    <input type="text"
     class="form-control"
+    [bsConfig]="bsConfig"
+    bsDatepicker
     formControlName="dateOfBirth"
     placeholder="Date oF Birth">
     <p class="text-error"
@@ -120,6 +123,7 @@
     <input type="submit" value="Submit" class="btn btn-primary py-2 px-4">
   </div>
 </form>
+
 
 </div>
 </div>

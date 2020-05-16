@@ -78,8 +78,10 @@
     </div>
     <div class="form-group">
       <label for="birthday">DOB:</label>
-      <input type="date"
+      <input type="text"
       class="form-control"
+      [bsConfig]="bsConfig"
+      bsDatepicker
       formControlName="dateOfBirth"
       placeholder="Date oF Birth">
       <p class="text-error"

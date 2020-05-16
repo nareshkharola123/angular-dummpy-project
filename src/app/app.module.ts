@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,6 +10,7 @@ import { BlogModule } from './blog/blog.module';
 import { SharedModule } from './shared/shared.module';
 import { UserModule } from './user/user.module';
 import { ENDPOINTS_CONFIG, EndpointsConfig } from './configs/endpoints.config';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { ENDPOINTS_CONFIG, EndpointsConfig } from './configs/endpoints.config';
     SharedModule,
     AuthModule,
     BlogModule,
-    UserModule
+    UserModule,
+    NgbModule,
+    BrowserAnimationsModule
   ],
   providers: [
     {provide: ENDPOINTS_CONFIG, useValue: EndpointsConfig}
