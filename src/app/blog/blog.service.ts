@@ -1,39 +1,20 @@
+import { BehaviorSubject } from 'rxjs';
+
 import { Blog } from './blog.model';
+import { Injectable } from '@angular/core';
+import { tap, take } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
 
-
+@Injectable({providedIn: 'root'})
 export class BlogService {
 
-    private blogs: Blog[] = [
-         new Blog(
-               'https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072823_960_720.jpg',
-               'A small river named Duden flows',
-                'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis, eius mollitia suscipit, quisquam doloremque distinctio perferendis et doloribus unde architecto optio laboriosam porro adipisci sapiente officiis nemo accusamus ad praesentium? Esse minima nisi et. Dolore perferendis, enim praesentium omnis, iste doloremque quia officia optio deserunt molestiae voluptates soluta architecto tempora.',
-                new Date()
-             ),
-        new Blog(
-                'https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072823_960_720.jpg',
-                'A small river named Duden flows',
-                'A small river named Duden flows by their place and supplies it with the necessary regelialia.',
-                new Date()
-                ),
-        new Blog(
-                'https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072823_960_720.jpg',
-                'A small river named Duden flows',
-                'A small river named Duden flows by their place and supplies it with the necessary regelialia.',
-                new Date()
-                ),
-        new Blog(
-                'https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072823_960_720.jpg',
-                'A small river named Duden flows',
-                'A small river named Duden flows by their place and supplies it with the necessary regelialia.',
-                new Date()
-                )
-    ]
+    private blogs: Blog[] = [];
+    blogsChanged = new BehaviorSubject<Blog[]>(null);
 
-    constructor(){}
+    constructor(private http: HttpClient){}
 
     getBlogList(){
-        return this.blogs.slice()
+        return this.blogs.slice();
     }
 
     getBlogDetail(id: number){
@@ -41,7 +22,39 @@ export class BlogService {
     }
 
     addBlog(blog: Blog){
-        this.blogs.push(blog);
+      blog['date'] = new Date();
+      this.blogs.push(blog);
+      this.blogsChanged.next(this.blogs.slice());
+      this.storeBlogs();
+    }
+
+
+    fetchBlogs(){
+      return this.http
+      .get<Blog[]>('https://ng-recipe-book-project-f7f1e.firebaseio.com/blogs.json')
+      .pipe(
+        tap(blogs => {
+          this.setBlogs(blogs);
+        })
+      )
+
+    }
+
+    private storeBlogs(){
+      const blogs = this.blogs;
+      this.http
+      .put(
+        'https://ng-recipe-book-project-f7f1e.firebaseio.com/blogs.json',
+        blogs
+      )
+      .subscribe(
+        response => console.log('storeBLogs:',response)
+      )
+    }
+
+    private setBlogs(blogs: Blog[]){
+      this.blogs = blogs
+      this.blogsChanged.next(this.blogs.slice());
     }
 
 
