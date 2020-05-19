@@ -1,9 +1,10 @@
 import { BehaviorSubject } from 'rxjs';
+import { Injectable, Inject } from '@angular/core';
 
 import { Blog } from './blog.model';
-import { Injectable } from '@angular/core';
-import { tap, take } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
+import { ENDPOINTS_CONFIG } from '../configs/endpoints.config';
 
 @Injectable({providedIn: 'root'})
 export class BlogService {
@@ -11,7 +12,10 @@ export class BlogService {
     private blogs: Blog[] = [];
     blogsChanged = new BehaviorSubject<Blog[]>(null);
 
-    constructor(private http: HttpClient){}
+    constructor(
+      private http: HttpClient,
+      @Inject(ENDPOINTS_CONFIG) private blog_end_api: any
+      ){}
 
     getBlogList(){
         return this.blogs.slice();
@@ -31,7 +35,7 @@ export class BlogService {
 
     fetchBlogs(){
       return this.http
-      .get<Blog[]>('https://ng-recipe-book-project-f7f1e.firebaseio.com/blogs.json')
+      .get<Blog[]>(this.blog_end_api.getBlogs)
       .pipe(
         tap(blogs => {
           this.setBlogs(blogs);
@@ -44,7 +48,7 @@ export class BlogService {
       const blogs = this.blogs;
       this.http
       .put(
-        'https://ng-recipe-book-project-f7f1e.firebaseio.com/blogs.json',
+         this.blog_end_api.putBlog,
         blogs
       )
       .subscribe(
