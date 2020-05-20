@@ -1,7 +1,12 @@
+// angular module
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
+// other modules
+import { NgxImageZoomModule } from 'ngx-image-zoom';
+
+// custom modules
 import { SharedModule } from '../shared/shared.module';
 import { BlogRoutingModule } from './blog-routing.module';
 import { BlogListComponent } from './blog-list/blog-list.component';
@@ -16,7 +21,7 @@ import { BlogService } from './blog.service';
   declarations: [
     BlogComponent,
     BlogListComponent,
-    BlogDetailComponent, 
+    BlogDetailComponent,
     BlogAddComponent
   ],
   imports: [
@@ -24,6 +29,7 @@ import { BlogService } from './blog.service';
     FormsModule,
     ReactiveFormsModule,
     BlogRoutingModule,
+    NgxImageZoomModule,
     SharedModule,
   ],
   providers: [
